@@ -1,0 +1,61 @@
+#:kivy 2.0.0
+
+<Spaceship>:
+	size: 100, 100
+	canvas:
+		PushMatrix:
+		Rotate:
+			angle: self.angle
+			origin: self.center
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: 'graphics/spaceship.png'
+
+<Laser>:
+	size: 5, 5
+	canvas:
+		PopMatrix:
+		Ellipse:
+			pos: self.pos
+			size: self.size
+
+<Asteroid>:
+	size: 120, 120
+	canvas:
+		Ellipse:
+			pos: self.pos
+			size: self.size
+			source: 'graphics/asteroid.png'
+
+<AsteroidsGame>:
+	spaceship: spaceship
+	laser: laser 
+	asteroid: asteroid
+	asteroid2: asteroid2
+
+	Label:
+		font_size: 80
+		center_x: root.width / 4
+		top: root.top - 50
+		text: str(root.spaceship.score)
+
+	Label:
+		font_size: 80
+		center_x: root.width * 3 / 4
+		top: root.top - 50
+		text: str(root.spaceship.lives)
+
+	Spaceship:
+		id: spaceship
+		center: self.parent.center
+
+	Laser:
+		id: laser
+		pos: 1600, 1200
+
+	Asteroid:
+		id: asteroid
+
+	Asteroid:
+		id: asteroid2
